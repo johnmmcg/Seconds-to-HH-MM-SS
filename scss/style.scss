@@ -1,0 +1,71 @@
+// colours:
+$primary: #00B4CC;
+$secondary: #c9734f;
+$background: #343838;
+
+// fonts:
+$mono: 'Space Mono', monospace;
+
+body {
+  background: $background;
+  color: $primary;
+  font-family: $mono;
+}
+
+.container {
+  width: 100%;
+  margin: 10% auto;
+  text-align: center;
+  font-size: 1.5em;
+  
+  input {
+    font-family: $mono;
+    text-align: center;
+    color: $secondary;
+    background: transparent;
+    margin: 10px;
+    padding: 10px;
+    font-size: 5vw;
+    border: solid 2px white;
+    border-radius: 0;
+        box-shadow: 5px 5px 0px $secondary;
+
+    width: 20%;
+    transition: width .75s ease-in-out;
+    
+    &:focus {
+      width: 30%;
+      outline: none;
+    }
+  }
+  
+  button {
+    font-family: $mono;
+    text-align: center;
+    color: $secondary;
+    background: transparent;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 2vw;
+    border: solid 2px white;
+    border-radius: 0;
+    box-shadow: 5px 5px 0px $secondary;
+    width: auto;
+    transition: border .5s ease-in-out, background .3s ease-in-out, color .25s ease-in-out, box-shadow .2s ease-in-out, transform .2s ease-in-out;
+    
+    &:hover {
+      background: $primary;
+      color: white;
+      border: solid 2px $primary;
+    }
+    
+    &:focus {
+      outline: 0;
+    }
+    
+    &:active {
+      transform: translate(5px, 5px);
+      box-shadow: none;
+    }
+  }
+}

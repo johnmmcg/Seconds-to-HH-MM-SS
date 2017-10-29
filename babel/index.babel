@@ -1,0 +1,74 @@
+class Converter extends React.Component{
+	constructor(props){
+  	super(props);
+    this.state = {
+        input: null,
+        output: "00:00:00"
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+  }
+  
+  humanReadable(seconds) {
+    var HH = `00`,
+        MM = `00`,
+        SS = `00`
+
+    if (seconds >= 359999) {
+      return `99:59:59`
+    } else {
+      var hours = Math.floor(seconds/3600)
+
+      if (hours < 10) {
+        HH = `0${hours}`
+      } else {
+        HH = hours
+      }
+
+      var remainingMinutes = Math.floor(seconds/60) - (hours*60)
+      if (remainingMinutes < 10) {
+        MM = `0${remainingMinutes}`
+      } else {
+        MM = remainingMinutes
+      }
+
+      var remainingSeconds = seconds - (hours*3600) - (remainingMinutes*60)
+      if (remainingSeconds < 10) {
+        SS = `0${remainingSeconds}`
+      } else {
+        SS = remainingSeconds
+      }
+
+      return `${HH}:${MM}:${SS}`
+    }
+  }
+  
+  handleChange(e){
+    this.setState({input: e.target.value})
+    console.log(this.state.input)
+  }
+  
+  handleFormSubmit(e){
+    e.preventDefault();
+    var newOutput = this.humanReadable(this.state.input)
+    this.setState({output: newOutput})
+  }
+  
+  render() {
+  	return (
+      <div className="container">
+        <h1>SECONDS to HH:MM:SS</h1>
+        <form onSubmit={this.handleFormSubmit}>
+          <input onChange={this.handleChange} type="text" placeholder="ENTER SECONDS" />
+            <br/>
+          <button type="submit">SUBMIT</button>
+        </form>
+        
+        <h1>{this.state.output}</h1>
+      </div>
+      
+    )
+  }
+}
+  
+ReactDOM.render(<Converter />, document.getElementById('myinput'));
